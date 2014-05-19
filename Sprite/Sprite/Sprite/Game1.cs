@@ -21,7 +21,7 @@ namespace Scroller
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Sprite bear0;
+        
         BackgroundScroller background;
         
         
@@ -45,9 +45,12 @@ namespace Scroller
         {
             // TODO: Add your initialization logic here
             
-            bear0 = new Sprite();
-
-            background = new BackgroundScroller();
+          
+            List<string> temp = new List<string>();
+            temp.Add("Background01");
+            temp.Add("Background02");
+            background = new BackgroundScroller(temp);
+          
 
 
             base.Initialize();
@@ -65,7 +68,7 @@ namespace Scroller
             // TODO: use this.Content to load your game content here
 
 
-            bear0.LoadContent(this.Content, "bear0");
+         
             background.LoadContent(this.Content);
 
 
@@ -97,10 +100,7 @@ namespace Scroller
 
 
             background.Update(gameTime);
-            if (bear0.InsideScreen(graphics))
-            {
-                bear0.Update();
-            }
+            background.Speed++;
             
             base.Update(gameTime);
         }
@@ -116,7 +116,7 @@ namespace Scroller
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             background.Draw(spriteBatch);
-            bear0.Draw(spriteBatch);
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }
